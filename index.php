@@ -11,7 +11,7 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
 switch ($controller) {
     case 'auth':
         if ($action === 'login') {
-            include 'app/views/user/dangnhap.php';
+            include 'app/views/admin/dangnhap.php';
             exit();
         } elseif ($action === 'register') {
             include 'app/views/user/dangky.php';

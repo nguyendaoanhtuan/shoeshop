@@ -1,60 +1,60 @@
-<!-- start footer Area -->
-<footer class="footer-area section_gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Theo dõi chúng tôi trên các nền tảng</h6>
-                    <p></p>
-                    <div class="footer-social d-flex align-items-center">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4  col-md-6 col-sm-6">
-            </div>
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget mail-chimp">
-                    <div class="single-footer-widget">
-                        <a href="../../../contact.html"><h6>Về chúng tôi</h6></a>
-                        <p>Số điện thoại: 0789123456</p>
-                        <p>Email: support@shoeshop.com</p>
-                        <p>Địa chỉ: khu phố 6, phường Linh Trung, quận Thủ Đức, thành phố Hồ Chí Minh</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- End footer Area -->
+
+</section>
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="public/admin/assets/js/jquery.js"></script>
+    <script src="public/admin/assets/js/jquery-1.8.3.min.js"></script>
+    <script src="public/admin/assets/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="public/admin/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="public/admin/assets/js/jquery.scrollTo.min.js"></script>
+    <script src="public/admin/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="public/admin/assets/js/jquery.sparkline.js"></script>
 
 
+    <!--common script for all pages-->
+    <script src="assets/js/common-scripts.js"></script>
+    
+    <script type="text/javascript" src="public/admin/assets/js/gritter/js/jquery.gritter.js"></script>
+    <script type="text/javascript" src="public/admin/assets/js/gritter-conf.js"></script>
 
+    <!--script for this page-->
+    <script src="public/admin/assets/js/sparkline-chart.js"></script>    
+	<script src="public/admin/assets/js/zabuto_calendar.js"></script>
+	
+	<script type="application/javascript">
+        $(document).ready(function () {
+            $("#date-popover").popover({html: true, trigger: "manual"});
+            $("#date-popover").hide();
+            $("#date-popover").click(function (e) {
+                $(this).hide();
+            });
+        
+            $("#my-calendar").zabuto_calendar({
+                action: function () {
+                    return myDateFunction(this.id, false);
+                },
+                action_nav: function () {
+                    return myNavFunction(this.id);
+                },
+                ajax: {
+                    url: "show_data.php?action=1",
+                    modal: true
+                },
+                legend: [
+                    {type: "text", label: "Sự kiện đặc biệt", badge: "00"},
+                    {type: "block", label: "Sự kiện thường", }
+                ]
+            });
+        });
+        
+        
+        function myNavFunction(id) {
+            $("#date-popover").hide();
+            var nav = $("#" + id).data("navigation");
+            var to = $("#" + id).data("to");
+            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+        }
+    </script>
+  
 
-<script src="user/assets/js/vendor/jquery-2.2.4.min.js"></script>
-<script src="../../../https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
-<script src="user/assets/js/vendor/bootstrap.min.js"></script>
-<script src="user/assets/js/jquery.ajaxchimp.min.js"></script>
-<script src="user/assets/js/jquery.nice-select.min.js"></script>
-<script src="user/assets/js/jquery.sticky.js"></script>
-<script src="user/assets/js/nouislider.min.js"></script>
-<script src="user/assets/js/countdown.js"></script>
-<script src="user/assets/js/jquery.magnific-popup.min.js"></script>
-<script src="user/assets/js/owl.carousel.min.js"></script>
-<!--gmaps Js-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-<script src="user/assets/js/gmaps.min.js"></script>
-<script src="user/assets/js/main.js"></script>
-
-</body>
-
+  </body>
 </html>

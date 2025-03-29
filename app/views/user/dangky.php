@@ -1,3 +1,4 @@
+<?php include_once 'app/views/sharesuser/header.php'; ?>
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
   <div class="container">
@@ -115,3 +116,4 @@
 
 
   </div>
+  <?php include_once 'app/views/sharesuser/footer.php'; ?>
