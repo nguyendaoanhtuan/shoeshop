@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="zxx" class="no-js">
 
 <head>
     <!-- Mobile Specific Meta -->
@@ -15,26 +15,19 @@
     <!-- meta character set -->
     <meta charset="UTF-8">
     <!-- Site Title -->
-    <title>ShoeShop - Cửa hàng giày uy tín</title>
+    <title>Shop bán giày dép</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/shoeshop/public/user/assets/css/linearicons.css">
-    <link rel="stylesheet" href="/shoeshop/public/user/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/shoeshop/public/user/assets/css/themify-icons.css">
-    <link rel="stylesheet" href="/shoeshop/public/user/assets/css/bootstrap.css">
-    <link rel="stylesheet" href="/shoeshop/public/user/assets/css/owl.carousel.css">
-    <link rel="stylesheet" href="/shoeshop/public/user/assets/css/nice-select.css">
-    <link rel="stylesheet" href="/shoeshop/public/user/assets/css/nouislider.min.css">
-    <link rel="stylesheet" href="/shoeshop/public/user/assets/css/ion.rangeSlider.css">
-    <link rel="stylesheet" href="/shoeshop/public/user/assets/css/ion.rangeSlider.skinFlat.css">
-    <link rel="stylesheet" href="/shoeshop/public/user/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="/shoeshop/public/user/assets/css/main.css">
+    <!--
+            CSS
+            ============================================= -->
+    <link rel="stylesheet" href="public/user/assets/css/linearicons.css">
+    <link rel="stylesheet" href="public/user/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="public/user/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="public/user/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="public/user/assets/css/nice-select.css">
+    <link rel="stylesheet" href="public/user/assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="public/user/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="public/user/assets/css/main.css">
 </head>
 
 <body>
@@ -42,33 +35,58 @@
 <!-- Start Header Area -->
 <header class="header_area sticky-header">
     <div class="main_menu">
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light main_box">
             <div class="container">
-                <!-- Brand -->
-                <a class="navbar-brand logo_h" href="/shoeshop"><img src="/shoeshop/public/user/assets/img/logo.png" alt=""></a>
-                
-                <!-- Toggler/collapsibe Button -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <a class="navbar-brand logo_h " href="public/user/assets/index.html"><img src="public/user/assets/img/logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-
-                <!-- Navbar links -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="/shoeshop">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/shoeshop/products">Sản phẩm</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/shoeshop/contact">Liên hệ</a></li>
-                        <?php if(isset($_SESSION['user_id'])): ?>
-                            <li class="nav-item"><a class="nav-link" href="/shoeshop/account">Tài khoản</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/shoeshop/logout">Đăng xuất</a></li>
-                        <?php else: ?>
-                            <li class="nav-item"><a class="nav-link" href="/shoeshop/login">Đăng nhập</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/shoeshop/register">Đăng ký</a></li>
-                        <?php endif; ?>
+                        <li class="nav-item"><a class="nav-link" href="public/user/assets/index.html">Trang chủ</a></li>
+                        <li class="nav-item submenu dropdown ">
+                            <a href="category/Nam/Boots/Boots.html" class="nav-link dropdown-toggle" role="button" aria-haspopup="true"
+                               aria-expanded="false">Nam</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="category/Nam/Boots/Boots.html">Boots</a></li>
+                                <li class="nav-item"><a class="nav-link" href="category/Nam/Sandal/Sandal.html">Sandal</a></li>
+                                <li class="nav-item"><a class="nav-link" href="category/Nam/SportShoe/SportShoe.html">Giày thể thao</a></li>
+                                <li class="nav-item"><a class="nav-link" href="category/Nam/RunningShoes/Runn1.html">Giày chạy bộ</a></li>
+                                <li class="nav-item"><a class="nav-link" href="category/Nam/SoccerShoes/Socc1.html">Giày đá banh</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item submenu dropdown ">
+                            <a href="category/Nu/Boots/Boots1.html" class="nav-link dropdown-toggle" role="button" aria-haspopup="true"
+                               aria-expanded="false">Nữ</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item "><a class="nav-link" href="category/Nu/Boots/Boots1.html">Boots</a></li>
+                                <li class="nav-item"><a class="nav-link" href="category/Nu/Sandal/Sandal-01.html">Sandal</a></li>
+                                <li class="nav-item"><a class="nav-link" href="category/Nu/SportShoes/SportShoe-01.html">Giày thể thao</a></li>
+                                <li class="nav-item"><a class="nav-link" href="category/Nu/RunningShoes/RunningShoes-01.html">Giày chạy bộ - đi bộ</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="category.html" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">Khuyến mãi</a>
+                        </li>
+
+                        <li class="nav-item "><a class="nav-link" href="contact.html">Liên hệ</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a href="/shoeshop/cart" class="cart"><span class="ti-bag"></span></a></li>
+                        <!--            <li class="nav-item"><a href="login.html" class="cart" id="cart"><span class="ti-bag"></span></a></li>-->
+                        <li><a class="nav-link" href="#" id="cart"><i class="ti-bag" data-toggle="modal" data-target="#cart1"></i><span class="badge"><p><span class="total-count"></span></p></span></a></li>
+
+
+                        <li class="nav-item"><a href="login.html" class="cart"><span class="ti-user"></span></a></li>
+                        <li class="nav-item">
+                            <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+                        </li>
                     </ul>
                 </div>
             </div>
