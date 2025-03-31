@@ -4,8 +4,9 @@ session_start();
 // Load các file cần thiết
 require_once 'app/config/database.php';
 require_once 'app/controllers/ProductController.php';
-require_once 'app/controllers/CategoryController.php'; // Thêm dòng này
+require_once 'app/controllers/CategoryController.php'; 
 require_once 'app/controllers/BrandsController.php';
+
 
 // Xác định controller và action với giá trị mặc định
 $controller = $_GET['controller'] ?? 'product';
