@@ -7,20 +7,12 @@ require_once 'app/controllers/ProductController.php';
 require_once 'app/controllers/CategoryController.php'; 
 require_once 'app/controllers/BrandsController.php';
 
-<<<<<<< HEAD
-
 // Xác định controller và action với giá trị mặc định
 $controller = $_GET['controller'] ?? 'product';
 $action = $_GET['action'] ?? 'index';
 $id = $_GET['id'] ?? null;
 
-=======
-// Xác định controller và action với giá trị mặc định
-$controller = $_GET['controller'] ?? 'product';
-$action = $_GET['action'] ?? 'index';
-$id = $_GET['id'] ?? null;
 
->>>>>>> anlai
 // Chuyển đổi tên controller sang dạng chuẩn (ProductController thay vì productController)
 $controllerClassName = ucfirst(strtolower($controller)) . 'Controller';
 
@@ -44,8 +36,6 @@ if ($id !== null) {
     $controllerInstance->$action($id);
 } else {
     $controllerInstance->$action();
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> anlai
+
