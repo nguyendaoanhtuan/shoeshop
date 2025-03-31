@@ -1,24 +1,38 @@
 <?php
 session_start();
 
+// Load các file cần thiết
 require_once 'app/config/database.php';
+require_once 'app/controllers/ProductController.php';
+require_once 'app/controllers/CategoryController.php'; // Thêm dòng này
+require_once 'app/controllers/BrandsController.php';
 
-// Xác định controller và action
-$controller = isset($_GET['controller']) ? $_GET['controller'] : 'auth';
-$action = isset($_GET['action']) ? $_GET['action'] : 'login';
-$id = isset($_GET['id']) ? $_GET['id'] : null;
+// Xác định controller và action với giá trị mặc định
+$controller = $_GET['controller'] ?? 'product';
+$action = $_GET['action'] ?? 'index';
+$id = $_GET['id'] ?? null;
 
-switch ($controller) {
-    case 'auth':
-        if ($action === 'login') {
-            include 'app/views/admin/dangnhap.php';
-            exit();
-        } elseif ($action === 'register') {
-            include 'app/views/user/dangky.php';
-            exit();
-        }
-        break;
-    default:
-        header("Location: ?controller=auth&action=login");
-        exit();
+// Chuyển đổi tên controller sang dạng chuẩn (ProductController thay vì productController)
+$controllerClassName = ucfirst(strtolower($controller)) . 'Controller';
+
+// Kiểm tra xem controller có tồn tại không
+if (!class_exists($controllerClassName)) {
+    header("HTTP/1.0 404 Not Found");
+    die("Controller không tồn tại");
+}
+
+// Khởi tạo controller
+$controllerInstance = new $controllerClassName();
+
+// Kiểm tra action có tồn tại trong controller không
+if (!method_exists($controllerInstance, $action)) {
+    header("HTTP/1.0 404 Not Found");
+    die("Action không tồn tại");
+}
+
+// Gọi action tương ứng với tham số id nếu có
+if ($id !== null) {
+    $controllerInstance->$action($id);
+} else {
+    $controllerInstance->$action();
 }

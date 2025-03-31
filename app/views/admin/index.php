@@ -72,7 +72,7 @@
 										];
 										var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
 								</script>
-	                      	</div><! --/grey-panel -->
+	                      	</div><!--/grey-panel -->
                       	</div><!-- /col-md-4-->
                       	
 
@@ -148,7 +148,7 @@
 										<h5>60% sử dụng</h5>
 									</div>
 								</footer>
-                      		</div><! -- /darkblue panel -->
+                      		</div><!-- /darkblue panel -->
 						</div><!-- /col-md-4 -->
 						
 						

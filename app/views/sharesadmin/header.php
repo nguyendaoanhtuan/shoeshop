@@ -12,7 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="public/admin/assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="public/admin/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="public/admin/assets/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="public/admin/assets/js/gritter/css/jquery.gritter.css" />
     <link rel="stylesheet" type="text/css" href="public/admin/assets/lineicons/style.css">    
@@ -200,61 +200,73 @@
       *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
       <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-
-                <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle"
-                                                                width="60"></a></p>
+        <div id="sidebar" class="nav-collapse">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+                <p class="centered"><a href="?controller=user&action=profile"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
                 <h5 class="centered">Ngân Nguyễn</h5>
 
                 <li class="mt">
-                    <a href="index.html">
+                    <a href="?controller=home&action=index">
                         <i class="fa fa-dashboard"></i>
                         <span>Trang chủ</span>
                     </a>
                 </li>
+                
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-cogs"></i>
                         <span>Các thành phần</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="calendar.html">Lịch</a></li>
-
-                        <li><a href="todo_list.html">Todo List</a></li>
+                        <li><a href="?controller=calendar&action=index">Lịch</a></li>
+                        <li><a href="?controller=todo&action=index">Todo List</a></li>
                     </ul>
-
+                </li>
 
                 <li class="sub-menu">
-                    <a href="chartjs.html">
-                        <i class=" fa fa-bar-chart-o"></i>
+                    <a href="?controller=chart&action=index">
+                        <i class="fa fa-bar-chart-o"></i>
                         <span>Biểu đồ</span>
                     </a>
-
                 </li>
-                <li class="active" class="sub-menu">
-                    <a  href="distributor.html">
-                        <i class=" fa fa-bar-chart-o"></i>
+                
+                <li class="active sub-menu">
+                    <a href="?controller=supplier&action=index">
+                        <i class="fa fa-truck"></i>
                         <span>Nhà cung cấp</span>
                     </a>
                 </li>
+                
                 <li class="sub-menu">
-                    <a href="account.html">
-                        <i class=" fa fa-bar-chart-o"></i>
+                    <a href="?controller=account&action=index">
+                        <i class="fa fa-user"></i>
                         <span>Tài khoản</span>
                     </a>
                 </li>
+                
                 <li class="sub-menu">
-                    <a href="product.html">
-                        <i class=" fa fa-bar-chart-o"></i>
+                    <a href="?controller=product&action=index">
+                        <i class="fa fa-cube"></i>
                         <span>Sản phẩm</span>
                     </a>
                 </li>
-
+                
+                <li class="sub-menu">
+                    <a href="?controller=category&action=index">
+                        <i class="fa fa-list"></i>
+                        <span>Danh mục</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="?controller=brands&action=index">
+                        <i class="fa fa-building"></i>
+                        <span>Thương hiệu</span>
+                    </a>
+                </li>
             </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
       <!--sidebar end-->
       
