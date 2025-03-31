@@ -1,4 +1,6 @@
 <?php include_once 'app/views/sharesuser/header.php'; ?>
+
+
 <section class="banner-area organic-breadcrumb">
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
@@ -24,20 +26,20 @@
 						<div class="hover">
 							<h4>Bạn là người mới?</h4>
 							<p>Hãy tạo tài khoản để mua hàng ở trang web chúng tôi!</p>
-							<a class="primary-btn" href="registration.html">Tạo tài khoản</a>
+							<a class="primary-btn" href="app/views/user/dangky.php">Tạo tài khoản</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>ĐĂNG NHẬP</h3>
-						<form class="row login_form" action="#" method="post" id="contactForm" >
+						<form class="row login_form" action="/shoeshop/login" method="post" id="contactForm" novalidate>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email đăng nhập'">
+								<input type="email" class="form-control" id="name" name="name" placeholder="Email" required>
 								<span class="form-message"></span>
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mật khẩu'">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required>
 								<span class="form-message"></span>
 							</div>
 							<div class="col-md-12 form-group">
@@ -47,7 +49,7 @@
 								</div>
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">Đăng nhập</button>
+								<button type="submit" class="primary-btn">Đăng nhập</button>
 								<a href="#">Quên mật khẩu?</a>
 							</div>
 						</form>
