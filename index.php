@@ -1,89 +1,38 @@
 <?php
 session_start();
+
+// Load các file cần thiết
 require_once 'app/config/database.php';
-require_once 'app/models/Category.php';
-require_once 'app/models/Product.php';
 require_once 'app/controllers/ProductController.php';
-require_once 'app/controllers/loginController.php';
-require_once 'app/controllers/ContactController.php';
-require_once 'app/controllers/AccountController.php';
+require_once 'app/controllers/CategoryController.php'; 
+require_once 'app/controllers/BrandsController.php';
 
-$database = new Database();
-$db = $database->getConnection();
+// Xác định controller và action với giá trị mặc định
+$controller = $_GET['controller'] ?? 'product';
+$action = $_GET['action'] ?? 'index';
+$id = $_GET['id'] ?? null;
 
-$loginController = new LoginController($db);
-$productController = new ProductController($db);
-$contactController = new ContactController($db);
-$accountController = new AccountController($db);
+// Chuyển đổi tên controller sang dạng chuẩn (ProductController thay vì productController)
+$controllerClassName = ucfirst(strtolower($controller)) . 'Controller';
 
-// Lấy URL hiện tại
-$request_uri = $_SERVER['REQUEST_URI'];
-$base_path = '/shoeshop';
-
-// Loại bỏ base path khỏi URL để có route
-$route = str_replace($base_path, '', $request_uri);
-
-// Nếu route trống, set thành '/'
-if (empty($route)) {
-    $route = '/';
+// Kiểm tra xem controller có tồn tại không
+if (!class_exists($controllerClassName)) {
+    header("HTTP/1.0 404 Not Found");
+    die("Controller không tồn tại");
 }
 
-// Loại bỏ query string nếu có
-if (($pos = strpos($route, '?')) !== false) {
-    $route = substr($route, 0, $pos);
+// Khởi tạo controller
+$controllerInstance = new $controllerClassName();
+
+// Kiểm tra action có tồn tại trong controller không
+if (!method_exists($controllerInstance, $action)) {
+    header("HTTP/1.0 404 Not Found");
+    die("Action không tồn tại");
 }
 
-// Loại bỏ dấu / ở cuối nếu có
-$route = rtrim($route, '/');
-if (empty($route)) {
-    $route = '/';
+// Gọi action tương ứng với tham số id nếu có
+if ($id !== null) {
+    $controllerInstance->$action($id);
+} else {
+    $controllerInstance->$action();
 }
-
-try {
-    switch ($route) {
-        case '/':
-            require_once 'app/views/user/index.php';
-            break;
-        case '/login':
-            $loginController->login();
-            break;
-        case '/register':
-            $loginController->register();
-            break;
-        case '/logout':
-            $loginController->logout();
-            break;
-        case '/products':
-            $productController->index();
-            break;
-        case '/contact':
-            $contactController->index();
-            break;
-        case '/contact/send':
-            $contactController->send();
-            break;
-        case '/account':
-            $accountController->index();
-            break;
-        case '/account/update':
-            $accountController->updateProfile();
-            break;
-        case '/account/change-password':
-            $accountController->changePassword();
-            break;
-        default:
-            if (preg_match('/^\/product\/(\d+)$/', $route, $matches)) {
-                $productController->detail($matches[1]);
-            } else {
-                header("HTTP/1.0 404 Not Found");
-                require_once 'app/views/404.php';
-            }
-            break;
-    }
-} catch (Exception $e) {
-    // Log lỗi và hiển thị trang lỗi
-    error_log($e->getMessage());
-    require_once 'app/views/error.php';
-}
-
-?>
