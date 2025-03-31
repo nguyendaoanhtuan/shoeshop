@@ -1,4 +1,5 @@
 <?php include_once 'app/views/sharesuser/header.php'; ?>
+<<<<<<< HEAD
 <!-- start banner Area -->
 <section class="banner-area">
     <div class="container">
@@ -44,6 +45,7 @@
         </div>
     </div>
 </section>
+<<<<<<< HEAD
 <!-- End banner Area -->
 <!-- start features Area -->
 <section class="features-area section_gap">
