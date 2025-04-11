@@ -346,7 +346,7 @@
                         </div><!-- / calendar -->
                       
                   </div><!-- /col-lg-3 -->
-              </div><! --/row -->
+              </div><!--/row-->
           </section>
       </section>
 

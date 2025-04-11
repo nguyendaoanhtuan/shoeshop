@@ -1,4 +1,11 @@
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /shoeshop/
+    
+    # Loại trừ các file và thư mục thực sự tồn tại
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Chuyển hướng tất cả request đến index.php
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>

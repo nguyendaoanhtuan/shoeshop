@@ -7,14 +7,6 @@ class BrandsModel {
         $this->db = $database->getConnection();
     }
 
-    // Lấy tất cả thương hiệu
-    public function getAllBrands() {
-        $query = "SELECT * FROM brands ORDER BY created_at DESC";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
     // Lấy thương hiệu theo ID
     public function getBrandById($id) {
         $query = "SELECT * FROM brands WHERE brand_id = :id";
@@ -75,6 +67,55 @@ class BrandsModel {
         $slug = preg_replace('/[^a-z0-9-]/', '-', $slug);
         $slug = preg_replace('/-+/', "-", $slug);
         return $slug;
+    }
+
+    // Lấy thương hiệu với phân trang và tìm kiếm
+    public function getPaginatedBrands($search = '', $page = 1, $perPage = 10) {
+        $offset = ($page - 1) * $perPage;
+
+        // Query cơ bản
+        $query = "SELECT * FROM brands WHERE 1=1";
+
+        // Thêm điều kiện tìm kiếm
+        $params = [];
+        if (!empty($search)) {
+            $query .= " AND name LIKE :search";
+            $params[':search'] = "%$search%";
+        }
+
+        // Đếm tổng số bản ghi
+        $countQuery = "SELECT COUNT(*) FROM brands WHERE 1=1";
+        if (!empty($search)) {
+            $countQuery .= " AND name LIKE :search";
+        }
+
+        // Sắp xếp theo brand_id tăng dần
+        $query .= " ORDER BY brand_id ASC LIMIT :offset, :perPage";
+
+        // Chuẩn bị câu lệnh đếm
+        $countStmt = $this->db->prepare($countQuery);
+        if (!empty($search)) {
+            $countStmt->bindValue(':search', "%$search%", PDO::PARAM_STR);
+        }
+        $countStmt->execute();
+        $totalRecords = $countStmt->fetchColumn();
+
+        // Chuẩn bị câu lệnh chính
+        $stmt = $this->db->prepare($query);
+        foreach ($params as $key => $value) {
+            $stmt->bindValue($key, $value);
+        }
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->bindValue(':perPage', $perPage, PDO::PARAM_INT);
+
+        $stmt->execute();
+        $brands = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return [
+            'brands' => $brands,
+            'totalRecords' => $totalRecords,
+            'totalPages' => ceil($totalRecords / $perPage)
+        ];
     }
 }
 ?>
