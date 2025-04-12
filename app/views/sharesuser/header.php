@@ -105,22 +105,7 @@
                         <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>contact">Liên hệ</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <?php
-                        // Lấy số lượng sản phẩm trong giỏ hàng
-                        require_once 'app/models/ShoppingCartModel.php';
-                        require_once 'app/models/CartItemModel.php';
-                        $cartModel = new ShoppingCartModel();
-                        $cartItemModel = new CartItemModel();
-                        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 1; // Giả sử user_id từ session
-                        $cart = $cartModel->getCartByUserId($user_id);
-                        $total_count = 0;
-                        if ($cart) {
-                            $items = $cartItemModel->getItemsByCartId($cart->cart_id);
-                            foreach ($items as $item) {
-                                $total_count += $item->quantity;
-                            }
-                        }
-                        ?>
+
                         <li>
                             <a class="nav-link" href="<?php echo BASE_URL; ?>user/cart/index" id="cart">
                                 <i class="ti-bag"></i>

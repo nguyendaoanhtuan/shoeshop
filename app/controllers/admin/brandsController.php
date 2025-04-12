@@ -9,6 +9,7 @@ class BrandsController {
     }
 
     public function index() {
+        Auth::checkAdmin();
         // Lấy tham số tìm kiếm và trang
         $search = isset($_GET['search']) ? trim($_GET['search']) : '';
         $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;

@@ -76,14 +76,14 @@
             <h5 class="centered">Admin</h5>
 
             <li class="active sub-menu">
-                <a href="admin/supplier">
+                <a href="admin/checkout">
                     <i class="fa fa-truck"></i>
                     <span>Đơn hàng</span>
                 </a>
             </li>
 
             <li class="sub-menu">
-                <a href="admin/account">
+                <a href="admin/user">
                     <i class="fa fa-user"></i>
                     <span>Tài khoản</span>
                 </a>

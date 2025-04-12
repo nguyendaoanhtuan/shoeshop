@@ -88,4 +88,97 @@ class UserModel {
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+
+    public function getAllUsers($page = 1, $perPage = 10, $search = '') {
+        try {
+            $offset = ($page - 1) * $perPage;
+            
+            $query = "SELECT user_id, email, full_name, phone_number, is_active, created_at 
+                     FROM " . $this->table . " 
+                     WHERE 1=1";
+            
+            if (!empty($search)) {
+                $query .= " AND (email LIKE :search OR full_name LIKE :search)";
+            }
+            
+            $query .= " ORDER BY created_at DESC LIMIT :offset, :perPage";
+            
+            $stmt = $this->conn->prepare($query);
+            
+            if (!empty($search)) {
+                $searchParam = "%$search%";
+                $stmt->bindParam(':search', $searchParam);
+            }
+            
+            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+            $stmt->bindParam(':perPage', $perPage, PDO::PARAM_INT);
+            
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Get users error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    // Thêm hàm đếm tổng số users
+    public function countUsers($search = '') {
+        try {
+            $query = "SELECT COUNT(*) as total FROM " . $this->table . " WHERE 1=1";
+            
+            if (!empty($search)) {
+                $query .= " AND (email LIKE :search OR full_name LIKE :search)";
+            }
+            
+            $stmt = $this->conn->prepare($query);
+            
+            if (!empty($search)) {
+                $searchParam = "%$search%";
+                $stmt->bindParam(':search', $searchParam);
+            }
+            
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+        } catch (PDOException $e) {
+            error_log("Count users error: " . $e->getMessage());
+            return 0;
+        }
+    }
+
+    // Thêm hàm cập nhật user
+    public function updateUser($data) {
+        try {
+            $query = "UPDATE " . $this->table . " 
+                     SET full_name = :full_name, 
+                         phone_number = :phone_number,
+                         is_active = :is_active
+                     WHERE user_id = :user_id";
+            
+            $stmt = $this->conn->prepare($query);
+            
+            $stmt->bindParam(':full_name', $data['full_name']);
+            $stmt->bindParam(':phone_number', $data['phone_number']);
+            $stmt->bindParam(':is_active', $data['is_active'], PDO::PARAM_INT);
+            $stmt->bindParam(':user_id', $data['user_id'], PDO::PARAM_INT);
+            
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Update user error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    // Thêm hàm xóa user
+    public function deleteUser($user_id) {
+        try {
+            $query = "DELETE FROM " . $this->table . " WHERE user_id = :user_id";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Delete user error: " . $e->getMessage());
+            return false;
+        }
+    }
 }

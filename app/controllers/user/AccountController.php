@@ -1,17 +1,22 @@
 <?php
 require_once 'app/core/Auth.php';
 require_once 'app/models/UserModel.php';
+require_once 'app/models/ShoppingCartModel.php';
+require_once 'app/models/CartItemModel.php';
 
 class AccountController {
     private $db;
     private $userModel;
+    private $cartModel;
+    private $cartItemModel;
 
     public function __construct($db) {
         $this->db = $db;
         $this->userModel = new UserModel($db);
+        $this->cartModel = new ShoppingCartModel();
+        $this->cartItemModel = new CartItemModel();
     }
 
-    // Đăng nhập
     public function login() {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             require_once 'app/views/user/account/login.php';
@@ -29,6 +34,11 @@ class AccountController {
                 'full_name' => $user['full_name'],
                 'email' => $user['email']
             ];
+
+            // Không xóa giỏ hàng khi đăng nhập
+            // Chỉ cần đảm bảo giỏ hàng tồn tại
+            $this->cartModel->getCartByUserId($user['user_id']); // Tạo giỏ hàng nếu chưa có
+
             header("Location: " . BASE_URL . "user/account/index");
             exit();
         }
@@ -38,7 +48,6 @@ class AccountController {
         exit();
     }
 
-    // Đăng ký
     public function register() {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             require_once 'app/views/user/account/register.php';
@@ -98,19 +107,25 @@ class AccountController {
         return $errors;
     }
 
-    // Đăng xuất
     public function logout() {
+        // Không xóa giỏ hàng khi đăng xuất
         unset($_SESSION['user']);
         session_destroy();
         header("Location: " . BASE_URL . "user/account/login");
         exit();
     }
 
-    // Trang tài khoản (yêu cầu đăng nhập)
     public function index() {
         Auth::checkUser();
-        $user = $this->userModel->getUserById($_SESSION['user']['user_id']);
-        $orders = $this->getOrders($_SESSION['user']['user_id']);
+        $user_id = $_SESSION['user']['user_id'] ?? null;
+        if (!$user_id) {
+            $_SESSION['error'] = "Phiên đăng nhập không hợp lệ.";
+            header("Location: " . BASE_URL . "user/account/login");
+            exit();
+        }
+
+        $user = $this->userModel->getUserById($user_id);
+        $orders = $this->getOrders($user_id);
         if (!$user) {
             $_SESSION['error'] = "Không tìm thấy thông tin người dùng.";
             header("Location: " . BASE_URL . "user/account/login");
@@ -119,10 +134,16 @@ class AccountController {
         require_once 'app/views/user/account/index.php';
     }
 
-    // Trang chỉnh sửa thông tin (yêu cầu đăng nhập)
     public function edit() {
         Auth::checkUser();
-        $user = $this->userModel->getUserById($_SESSION['user']['user_id']);
+        $user_id = $_SESSION['user']['user_id'] ?? null;
+        if (!$user_id) {
+            $_SESSION['error'] = "Phiên đăng nhập không hợp lệ.";
+            header("Location: " . BASE_URL . "user/account/login");
+            exit();
+        }
+
+        $user = $this->userModel->getUserById($user_id);
         if (!$user) {
             $_SESSION['error'] = "Không tìm thấy thông tin người dùng.";
             header("Location: " . BASE_URL . "user/account/login");
@@ -139,9 +160,15 @@ class AccountController {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Cập nhật hồ sơ
     public function updateProfile() {
         Auth::checkUser();
+        $user_id = $_SESSION['user']['user_id'] ?? null;
+        if (!$user_id) {
+            $_SESSION['error'] = "Phiên đăng nhập không hợp lệ.";
+            header("Location: " . BASE_URL . "user/account/login");
+            exit();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $full_name = $_POST['full_name'] ?? '';
             $email = $_POST['email'] ?? '';
@@ -154,7 +181,7 @@ class AccountController {
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':phone', $phone);
             $stmt->bindParam(':address', $address);
-            $stmt->bindParam(':user_id', $_SESSION['user']['user_id']);
+            $stmt->bindParam(':user_id', $user_id);
 
             if ($stmt->execute()) {
                 $_SESSION['success'] = "Cập nhật thông tin thành công!";
@@ -168,9 +195,15 @@ class AccountController {
         }
     }
 
-    // Đổi mật khẩu
     public function changePassword() {
         Auth::checkUser();
+        $user_id = $_SESSION['user']['user_id'] ?? null;
+        if (!$user_id) {
+            $_SESSION['error'] = "Phiên đăng nhập không hợp lệ.";
+            header("Location: " . BASE_URL . "user/account/login");
+            exit();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $current_password = $_POST['current_password'] ?? '';
             $new_password = $_POST['new_password'] ?? '';
@@ -178,7 +211,7 @@ class AccountController {
 
             $query = "SELECT password_hash FROM users WHERE user_id = :user_id";
             $stmt = $this->db->prepare($query);
-            $stmt->bindParam(':user_id', $_SESSION['user']['user_id']);
+            $stmt->bindParam(':user_id', $user_id);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -198,7 +231,7 @@ class AccountController {
             $query = "UPDATE users SET password_hash = :password_hash WHERE user_id = :user_id";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':password_hash', $hashed_password);
-            $stmt->bindParam(':user_id', $_SESSION['user']['user_id']);
+            $stmt->bindParam(':user_id', $user_id);
 
             if ($stmt->execute()) {
                 $_SESSION['success'] = "Đổi mật khẩu thành công!";
