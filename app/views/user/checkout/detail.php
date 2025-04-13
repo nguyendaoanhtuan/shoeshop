@@ -15,6 +15,7 @@
 </section>
 <!-- End Banner Area -->
 <div class="container order-detail">
+<a href="<?= BASE_URL ?>shoeshop/user/account/index" class="btn btn-primary mb-2">Quay lại</a>
     <div class="row">
         <div class="col-md-8">
             <div class="content-panel content-panel-body">
@@ -127,7 +128,18 @@
                     </div>
                 </div>
             </div>
-            <a href="<?= BASE_URL ?>shoeshop/user/account/index" class="btn btn-primary">Quay lại</a>
+            <?php
+                switch($order->status){
+                    case 'pending':
+                    case 'processing':
+                        echo '<form method="POST" action="">
+                        <button onclick="return confirm("Bạn có chắc chắn muốn hủy đơn hàng này?")" type="submit" class="btn btn-danger">Hủy đơn hàng</button>
+                        </form>';
+                        break;
+                    default:
+                        break;
+                }
+            ?>
         </div>
     </div>
 

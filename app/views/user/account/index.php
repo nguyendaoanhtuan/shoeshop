@@ -23,33 +23,45 @@
             <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
         <?php endif; ?>
 
-        <div class="row">
-            <div class="col-lg-6">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 profile-panel">
                 <div class="login_form_inner">
                     <h3>Thông tin cá nhân</h3>
                     <div class="row">
-                        <div class="col-md-12 form-group">
-                            <label><strong>Họ tên:</strong> <?php echo isset($user['full_name']) ? htmlspecialchars($user['full_name']) : 'Chưa cập nhật'; ?></label>
+                        <div class="col-md-3 form-group">
+                            <label><strong>Họ tên:</strong></label>
                         </div>
-                        <div class="col-md-12 form-group">
-                            <label><strong>Email:</strong> <?php echo isset($user['email']) ? htmlspecialchars($user['email']) : 'Chưa cập nhật'; ?></label>
+                        <div class="col-md-9 form-group">
+                            <label><?php echo isset($user['full_name']) ? htmlspecialchars($user['full_name']) : 'Chưa cập nhật'; ?></label>
                         </div>
-                        <div class="col-md-12 form-group">
-                            <label><strong>Số điện thoại:</strong> <?php echo isset($user['phone_number']) ? htmlspecialchars($user['phone_number']) : 'Chưa cập nhật'; ?></label>
+                        <div class="col-md-3 form-group">
+                            <label><strong>Email:</strong> </label>
                         </div>
-                        <div class="col-md-12 form-group">
-                            <label><strong>Địa chỉ:</strong> <?php echo isset($user['address']) ? htmlspecialchars($user['address']) : 'Chưa cập nhật'; ?></label>
+                        <div class="col-md-9 form-group">
+                            <label><?php echo isset($user['email']) ? htmlspecialchars($user['email']) : 'Chưa cập nhật'; ?></label>
                         </div>
-                        <div class="col-md-12 form-group">
+                        <div class="col-md-3 form-group">
+                            <label><strong>Số điện thoại:</strong> </label>
+                        </div>
+                        <div class="col-md-9 form-group">
+                            <label><?php echo isset($user['phone_number']) ? htmlspecialchars($user['phone_number']) : 'Chưa cập nhật'; ?></label>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label><strong>Địa chỉ:</strong> </label>
+                        </div>
+                        <div class="col-md-9 form-group">
+                            <label><?php echo isset($user['address']) ? htmlspecialchars($user['address']) : 'Chưa cập nhật'; ?></label>
+                        </div>
+                    </div>
+                    <div class="justify-content-center d-flex" style="gap: 10px">
                             <a href="<?php echo BASE_URL; ?>user/account/edit" class="primary-btn">Chỉnh sửa thông tin</a>
                             <a href="<?php echo BASE_URL; ?>user/account/logout" class="primary-btn" style="background-color: #dc3545;">Đăng xuất</a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row mt-5">
+        <div class="row">
             <div class="col-lg-12">
                 <div class="order_details_table">
                     <h2>Lịch sử đơn hàng</h2>

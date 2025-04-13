@@ -284,6 +284,15 @@ class CheckoutController {
             header("Location: " . BASE_URL . "user/account/index");
             exit();
         }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($this->orderModel->cancelOrder($orderId)) {
+                $_SESSION['success'] = "Hủy đơn hàng thành công.";
+            } else {
+                $_SESSION['error'] = "Hủy đơn hàng thất bại.";
+            }
+            header("Location: " . BASE_URL . "user/account/index");
+            exit;
+        }
         require_once 'app/views/user/checkout/detail.php';
     }
 }

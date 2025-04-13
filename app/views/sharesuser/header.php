@@ -98,11 +98,6 @@
                                 <?php endforeach; ?>
                             </ul>
                         </li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="<?php echo BASE_URL; ?>promotions" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                               aria-expanded="false">Khuyến mãi</a>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>contact">Liên hệ</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 

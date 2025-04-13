@@ -50,10 +50,13 @@
           <div class="top-menu">
                 <ul class="nav pull-right top-menu">
                     <li>
-                        <!-- Tạo form đăng xuất với phương thức POST -->
+                        <div class="logout">
                         <form action="/shoeshop/admin/logout" method="POST">
-                            <button type="submit" class="logout">Đăng xuất</button>
+                            <button type="submit" class="btn btn-danger logout">Đăng xuất</button>
                         </form>
+                        </div>
+                        <!-- Tạo form đăng xuất với phương thức POST -->
+                        
                     </li>
                 </ul>
             </div>

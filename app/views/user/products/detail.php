@@ -21,7 +21,7 @@
 <!-- End Banner Area -->
 
 <!--================Single Product Area =================-->
-<div class="product_image_area">
+<div class="product_image_area" style="padding: 15px 0px">
     <div class="container">
         <div class="row s_product_inner">
             <div class="col-lg-6">
@@ -82,7 +82,7 @@
                             </div>
                             <br>
                             <div class="card_area d-flex align-items-center">
-                                <button type="submit" class="primary-btn">Thêm vào giỏ hàng</button>
+                                <button type="submit" class="btn primary-btn">Thêm vào giỏ hàng</button>
                                 <a class="icon_btn" href="#"><i class="lnr lnr-heart"></i></a>
                             </div>
                         </div>

@@ -78,6 +78,18 @@ class OrderModel {
         return $stmt->execute();
     }
 
+    // Hủy đơn hàng
+    public function cancelOrder($order_id) {
+        $query = "UPDATE " . $this->table . " 
+                  SET status = 'cancelled', updated_at = CURRENT_TIMESTAMP 
+                  WHERE order_id = :order_id";
+        $stmt = $this->db->prepare($query);
+        
+        $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
+        
+        return $stmt->execute();
+    }
+
     // Lấy đơn hàng theo order_id
     public function getOrderById($order_id) {
         $query = "SELECT * FROM " . $this->table . " WHERE order_id = :order_id LIMIT 1";
