@@ -109,7 +109,7 @@
                         <li>
                             <a class="nav-link" href="<?php echo BASE_URL; ?>user/cart/index" id="cart">
                                 <i class="ti-bag"></i>
-                                <span class="badge"><p><span class="total-count"><?php echo $total_count; ?></span></p></span>
+                                <span class="badge"><p><span class="total-count"><!--<?php echo $total_count; ?>--></span></p></span>
                             </a>
                         </li>
                         <li class="nav-item"><a href="<?php echo BASE_URL; ?>user/account/index" class="cart"><span class="ti-user"></span></a></li>

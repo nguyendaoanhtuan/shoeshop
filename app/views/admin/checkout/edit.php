@@ -2,7 +2,11 @@
 
 <section id="main-content">
     <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Chi tiết đơn hàng #<?= htmlspecialchars($order->order_number) ?></h3>
+        <h3 style="background-color: #FFFFFF;
+        padding: 8px;
+        border-radius: 10px;
+        width: auto">
+            Thông tin đơn hàng #<?= htmlspecialchars($order->order_number) ?></h3>
 
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-success alert-dismissible">
@@ -18,14 +22,18 @@
             </div>
         <?php endif; ?>
 
-        <div class="row mt">
+        <div class="row">
             <div class="col-md-12">
-                <div class="content-panel">
-                    <h4><i class="fa fa-angle-right"></i> Thông tin đơn hàng</h4>
-                    <hr>
+                <div
+                style="border-radius: 15px;
+                padding: 15px;"
+                 class="content-panel">
+                 <h4 style="color: black;
+                 font-weight: bold">Trạng thái đơn hàng</h4>
                     <form method="POST" action="">
+                    
                         <div class="form-group">
-                            <label>Trạng thái đơn hàng</label>
+                            <label>Trạng thái giao hàng</label>
                             <select name="status" class="form-control">
                                 <option value="pending" <?= $order->status == 'pending' ? 'selected' : '' ?>>Chờ xử lý</option>
                                 <option value="processing" <?= $order->status == 'processing' ? 'selected' : '' ?>>Đang xử lý</option>
@@ -38,25 +46,33 @@
                             <label>Trạng thái thanh toán</label>
                             <select name="payment_status" class="form-control">
                                 <option value="pending" <?= $order->payment_status == 'pending' ? 'selected' : '' ?>>Chưa thanh toán</option>
-                                <option value="completed" <?= $order->payment_status == 'completed' ? 'selected' : '' ?>>Đã thanh toán</option>
+                                <option value="paid" <?= $order->payment_status == 'paid' ? 'selected' : '' ?>>Đã thanh toán</option>
                                 <option value="failed" <?= $order->payment_status == 'failed' ? 'selected' : '' ?>>Thanh toán thất bại</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Cập nhật</button>
                         <a href="<?= BASE_URL ?>admin/checkout" class="btn btn-default">Quay lại</a>
                     </form>
-
-                    <h4 class="mt-4"><i class="fa fa-angle-right"></i> Sản phẩm trong đơn hàng</h4>
                     <hr>
+                    <h4 style="color: black;
+                 font-weight: bold">Địa chỉ giao hàng</h4>
+                    <p><?= htmlspecialchars($order->shipping_address) ?></p>
+                    <hr>
+                    <h4>Ghi chú</h4>
+                    <p><?= htmlspecialchars($order->customer_note ?: 'Không có ghi chú') ?></p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt">
+            <div class="col-md-12">
+                <div class="content-panel">
                     <table class="table table-striped table-advance table-hover">
                         <thead>
-                            < Oceanshades of product name and size name for clarity -->
                             <tr>
                                 <th><i class="fa fa-cube"></i> Sản phẩm</th>
                                 <th><i class="fa fa-cubes"></i> Kích thước</th>
                                 <th><i class="fa fa-sort-numeric-up"></i> Số lượng</th>
-                                <th><i class="fa fa-money"></i> Giá</th>
-                                <th><i class="fa fa-tags"></i> Giảm giá</th>
+                                <th><i class="fa fa-money"></i>Đơn giá</th>
                                 <th><i class="fa fa-money"></i> Tổng</th>
                             </tr>
                         </thead>
@@ -71,23 +87,21 @@
                                     <td><?= htmlspecialchars($item->product_name) ?></td>
                                     <td><?= htmlspecialchars($item->size_name) ?></td>
                                     <td><?= $item->quantity ?></td>
-                                    <td><?= number_format($item->price, 0, ',', '.') ?> VNĐ</td>
-                                    <td><?= number_format($item->discount_price, 0, ',', '.') ?> VNĐ</td>
-                                    <td><?= number_format(($item->price - $item->discount_price) * $item->quantity, 0, ',', '.') ?> VNĐ</td>
+                                    <?php if ($item->discount_price > 0): ?>
+                                        <td><?= number_format($item->discount_price, 0, ',', '.') ?> ₫ <del><?= number_format($item->price, 0, ',', '.') ?> ₫</del></td>
+                                    <?php else: ?>
+                                        <td><?= number_format($item->price, 0, ',', '.') ?> ₫</td>
+                                    <?php endif; ?>
+                                    <td><?= number_format(($item->discount_price ?: $item->price) * $item->quantity, 0, ',', '.') ?> ₫</td>
                                 </tr>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </tbody>
                     </table>
-
-                    <h4 class="mt-4"><i class="fa fa-angle-right"></i> Thông tin bổ sung</h4>
                     <hr>
-                    <p><strong>Địa chỉ giao hàng:</strong> <?= htmlspecialchars($order->shipping_address) ?></p>
-                    <p><strong>Địa chỉ thanh toán:</strong> <?= htmlspecialchars($order->billing_address) ?></p>
                     <p><strong>Phương thức thanh toán:</strong> <?= htmlspecialchars($order->payment_method) ?></p>
-                    <p><strong>Ghi chú khách hàng:</strong> <?= htmlspecialchars($order->customer_note ?: '-') ?></p>
-                    <p><strong>Phí vận chuyển:</strong> <?= number_format($order->shipping_fee, 0, ',', '.') ?> VNĐ</p>
-                    <p><strong>Tổng tiền:</strong> <?= number_format($order->total_amount + $order->shipping_fee, 0, ',', '.') ?> VNĐ</p>
+                    <p><strong>Phí vận chuyển:</strong> <?= number_format($order->shipping_fee, 0, ',', '.') ?> ₫</p>
+                    <p><strong>Tổng tiền:</strong> <?= number_format($order->total_amount + $order->shipping_fee, 0, ',', '.') ?> ₫</p>
                 </div>
             </div>
         </div>

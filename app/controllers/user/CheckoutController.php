@@ -133,7 +133,7 @@ class CheckoutController {
         $total = $subtotal + $shipping_fee;
 
         // Tạo đơn hàng
-        $shipping_address = $first_name . ' ' . $last_name . ', ' . $address . ', SĐT: ' . $phone . ', Email: ' . $email;
+        $shipping_address = $first_name . ' ' . $last_name . ' | ' . $address . ' | ' . $phone . ' | ' . $email;
         $billing_address = $shipping_address;
 
         try {
@@ -144,7 +144,7 @@ class CheckoutController {
 
             // Thêm các mục vào đơn hàng
             foreach ($items as $item) {
-                $price = $item->discount_price ?: $item->price;
+                $price = $item->price;
                 $success = $this->orderItemModel->addOrderItem(
                     $order_id,
                     $item->variant_id,
@@ -170,7 +170,7 @@ class CheckoutController {
                 $this->orderModel->updateOrderStatus($order_id, 'processing', 'pending');
                 $this->cartItemModel->clearCart($cart->cart_id);
                 $_SESSION['success'] = "Đặt hàng thành công! Chúng tôi sẽ giao hàng sớm nhất có thể.";
-                header('Location: ' . BASE_URL . 'user/checkout/result');
+                header('Location: ' . BASE_URL . 'user/checkout/detail/'.$order_id);
                 exit;
             }
         } catch (Exception $e) {
@@ -270,11 +270,20 @@ class CheckoutController {
         } else {
             $_SESSION['error'] = "Sai chữ ký!";
         }
-        header('Location: ' . BASE_URL . 'user/checkout/result');
+        header('Location: ' . BASE_URL . 'user/checkout/detail');
         exit;
     }
 
     public function result() {
         require_once 'app/views/user/checkout/result.php';
+    }
+    public function detail($orderId) {
+        $order = $this->orderModel->getOrderById($orderId);
+        $orderItems = $this->orderItemModel->getItemsByOrderId($orderId);
+        if (!$order) {
+            header("Location: " . BASE_URL . "user/account/index");
+            exit();
+        }
+        require_once 'app/views/user/checkout/detail.php';
     }
 }

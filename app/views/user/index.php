@@ -180,7 +180,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p1.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p1.jpg" alt="">
                         <div class="product-details">
                             <h6>M1</h6>
                             <div class="price">
@@ -210,7 +210,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p2.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p2.jpg" alt="">
                         <div class="product-details">
                             <h6>M2</h6>
                             <div class="price">
@@ -239,7 +239,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p3.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p3.jpg" alt="">
                         <div class="product-details">
                             <h6>M3</h6>
                             <div class="price">
@@ -267,7 +267,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p4.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p4.jpg" alt="">
                         <div class="product-details">
                             <h6>M4</h6>
                             <div class="price">
@@ -296,7 +296,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p5.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p5.jpg" alt="">
                         <div class="product-details">
                             <h6>M5</h6>
                             <div class="price">
@@ -326,7 +326,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p6.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p6.jpg" alt="">
                         <div class="product-details">
                             <h6>M6</h6>
                             <div class="price">
@@ -356,7 +356,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p7.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p7.jpg" alt="">
                         <div class="product-details">
                             <h6>M7</h6>
                             <div class="price">
@@ -386,7 +386,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p8.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p8.jpg" alt="">
                         <div class="product-details">
                             <h6>M8</h6>
                             <div class="price">
@@ -430,7 +430,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p6.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p6.jpg" alt="">
                         <div class="product-details">
                             <h6>M9</h6>
                             <div class="price">
@@ -459,7 +459,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p8.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p8.jpg" alt="">
                         <div class="product-details">
                             <h6>M10</h6>
                             <div class="price">
@@ -488,7 +488,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p3.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p3.jpg" alt="">
                         <div class="product-details">
                             <h6>M11</h6>
                             <div class="price">
@@ -517,7 +517,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p5.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p5.jpg" alt="">
                         <div class="product-details">
                             <h6>M12</h6>
                             <div class="price">
@@ -546,7 +546,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p1.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p1.jpg" alt="">
                         <div class="product-details">
                             <h6>M13</h6>
                             <div class="price">
@@ -575,7 +575,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p4.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p4.jpg" alt="">
                         <div class="product-details">
                             <h6>M14</h6>
                             <div class="price">
@@ -604,7 +604,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p1.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p1.jpg" alt="">
                         <div class="product-details">
                             <h6>M15</h6>
                             <div class="price">
@@ -633,7 +633,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="img/product/p8.jpg" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/p8.jpg" alt="">
                         <div class="product-details">
                             <h6>M16</h6>
                             <div class="price">
@@ -703,7 +703,7 @@
                 <div class="active-exclusive-product-slider">
                     <!-- single exclusive carousel -->
                     <div class="single-exclusive-slider">
-                        <img class="img-fluid" src="img/product/e-p1.png" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/e-p1.png" alt="">
                         <div class="product-details">
                             <div class="price">
                                 <h6>189.000đ</h6>
@@ -719,7 +719,7 @@
                     </div>
                     <!-- single exclusive carousel -->
                     <div class="single-exclusive-slider">
-                        <img class="img-fluid" src="img/product/e-p1.png" alt="">
+                        <img class="img-fluid" src="public/user/assets/img/product/e-p1.png" alt="">
                         <div class="product-details">
                             <div class="price">
                                 <h6>189.000đ</h6>

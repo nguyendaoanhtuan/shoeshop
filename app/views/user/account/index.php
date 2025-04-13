@@ -72,7 +72,7 @@
                                 <?php else: ?>
                                     <?php foreach ($orders as $order): ?>
                                     <tr>
-                                        <td>#<?php echo $order['order_id']; ?></td>
+                                        <td>#<?php echo $order['order_number']; ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($order['created_at'])); ?></td>
                                         <td><?php echo number_format($order['total_amount'], 0, ',', '.'); ?>đ</td>
                                         <td>
@@ -111,7 +111,7 @@
                                             <span class="<?php echo $status_class; ?>"><?php echo $status_text; ?></span>
                                         </td>
                                         <td>
-                                            <a href="<?php echo BASE_URL; ?>order/<?php echo $order['order_id']; ?>" 
+                                            <a href="<?php echo BASE_URL; ?>user/checkout/detail/<?php echo $order['order_id']; ?>" 
                                                class="btn btn-sm btn-outline-primary">Xem chi tiết</a>
                                         </td>
                                     </tr>

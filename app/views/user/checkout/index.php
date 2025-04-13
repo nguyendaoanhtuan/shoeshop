@@ -98,11 +98,6 @@
                                 <div class="check"></div>
                             </div>
                         </div>
-                        <div class="creat_account">
-                            <input type="checkbox" id="f-option4" name="terms" required>
-                            <label for="f-option4">Tôi đã đọc và chấp nhận </label>
-                            <a href="#">mọi điều khoản*</a>
-                        </div>
                         <button type="submit" form="checkoutForm" class="primary-btn">Xác nhận</button>
                     </div>
                 </div>

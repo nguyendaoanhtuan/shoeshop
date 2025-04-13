@@ -2,7 +2,6 @@
 
 <section id="main-content">
     <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Quản lý đơn hàng</h3>
 
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-success alert-dismissible">
@@ -22,7 +21,7 @@
             <div class="col-md-12">
                 <div class="content-panel">
                     <div style="justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <h4><i class="fa fa-angle-right"></i> Danh sách đơn hàng</h4>
+                        <h4><b>Danh sách đơn hàng</b></h4>
                         <form method="GET" action="<?= BASE_URL ?>admin/checkout">
                             <div class="input-group" style="width: 300px;">
                                 <input type="text" name="search" class="form-control" 
@@ -59,14 +58,14 @@
                                 <tr>
                                     <td><?= htmlspecialchars($order->order_number) ?></td>
                                     <td><?= htmlspecialchars($order->shipping_address) ?></td>
-                                    <td><?= number_format($order->total_amount + $order->shipping_fee, 0, ',', '.') ?> VNĐ</td>
+                                    <td><?= number_format($order->total_amount + $order->shipping_fee, 0, ',', '.') ?> ₫</td>
                                     <td>
                                         <span class="label label-<?= $order->status == 'delivered' ? 'success' : ($order->status == 'pending' ? 'warning' : 'danger') ?> label-mini">
                                             <?= ucfirst($order->status) ?>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="label label-<?= $order->payment_status == 'completed' ? 'success' : 'warning' ?> label-mini">
+                                        <span class="label label-<?= $order->payment_status == 'paid' ? 'success' : ($order->payment_status == 'pending' ? 'warning' : 'danger') ?> label-mini">
                                             <?= ucfirst($order->payment_status) ?>
                                         </span>
                                     </td>

@@ -190,7 +190,7 @@
                                 <div class="single-product">
                                     <img class="img-fluid resize" src="<?php echo $product->primary_image ? BASE_URL . 'public/' . htmlspecialchars($product->primary_image) : BASE_URL . 'public/user/assets/img/product/default.jpg'; ?>" alt="">
                                     <div class="product-details">
-                                        <a href="<?php echo BASE_URL; ?>product/<?php echo $product->product_id; ?>">
+                                        <a href="<?php echo BASE_URL; ?>user/Product/detail/<?php echo $product->product_id; ?>">
                                             <h6><?php echo htmlspecialchars($product->name); ?></h6>
                                         </a>
                                         <div class="price">
@@ -199,20 +199,16 @@
                                                 <h6 class="l-through"><?php echo number_format($product->price, 0, ',', '.'); ?>đ</h6>
                                             <?php endif; ?>
                                         </div>
-                                        <div class="size-selection" style="margin-bottom: 10px;">
+                                        <!-- <div class="size-selection" style="margin-bottom: 10px;">
                                             <form method="POST" action="<?php echo BASE_URL; ?>cart/add">
                                                 <div class="prd-bottom">
-                                                    <a href="" class="social-info">
-                                                        <span class="ti-bag"></span>
-                                                        <p class="hover-text">Thêm vào giỏ</p>
-                                                    </a>
                                                     <a href="<?php echo BASE_URL; ?>user/Product/detail/<?php echo $product->product_id; ?>" class="social-info">
                                                         <span class="lnr lnr-move"></span>
                                                         <p class="hover-text">Xem thêm</p>
                                                     </a>
                                                 </div>
                                             </form>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

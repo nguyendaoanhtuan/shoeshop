@@ -93,7 +93,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <h5>Giao hàng</h5>
+                                <h5>Phí vận chuyển</h5>
                             </td>
                             <td>
                                 <h5><?php echo number_format($shipping_fee, 0, ',', '.'); ?>đ</h5>

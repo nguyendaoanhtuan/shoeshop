@@ -11,7 +11,7 @@ Premium: http://www.gridgum.com
 
 /* BASIC THEME CONFIGURATION */
 body {
-    color: #797979;
+    color: #2b2b2b;
 	background: #f2f2f2;
     font-family: 'Ruda', sans-serif;
     padding: 0px !important;
@@ -164,7 +164,7 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 1px solid #797979;
+  border-top: 1px solid #2b2b2b;
 }
 
 
@@ -1155,13 +1155,12 @@ PANELS CONFIGURATIONS
 .content-panel {
 	background: #ffffff;
 	box-shadow: 0px 3px 2px #aab2bd;
-	padding-top: 15px;
-	padding-bottom: 5px;
+	padding: 15px;
+    border-radius: 10px;
 }
-.content-panel h4 {
-	margin-left: 10px;
+.content-panel h4{
+    font-weight: bold;
 }
-
 /*WEATHER PANELS*/
 
 /* Weather 1 */
@@ -1607,7 +1606,7 @@ PANELS CONFIGURATIONS
 }
 .panel.terques-chart {
     background: transparent;
-    color: #797979;
+    color: #2b2b2b;
 }
 .panel.terques-chart .chart-tittle .value {
     float: right;
@@ -2135,7 +2134,7 @@ label {
     padding: 14px 15px;
     text-align: center;
     border-right: 1px solid #d5d8df;
-    color: #797979;
+    color: #2b2b2b;
 }
 
 .panel-footer.revenue-foot ul li a:hover, .panel-footer.revenue-foot ul li.active a {
