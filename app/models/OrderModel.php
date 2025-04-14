@@ -65,14 +65,16 @@ class OrderModel {
     }
 
     // Cập nhật trạng thái đơn hàng và trạng thái thanh toán
-    public function updateOrderStatus($order_id, $status, $payment_status) {
+    public function updateOrderStatus($order_id, $status, $payment_status, $order_address, $order_note) {
         $query = "UPDATE " . $this->table . " 
-                  SET status = :status, payment_status = :payment_status, updated_at = CURRENT_TIMESTAMP 
+                  SET status = :status, payment_status = :payment_status,shipping_address = :order_address, customer_note = :order_note, updated_at = CURRENT_TIMESTAMP 
                   WHERE order_id = :order_id";
         $stmt = $this->db->prepare($query);
         
         $stmt->bindParam(':status', $status);
         $stmt->bindParam(':payment_status', $payment_status);
+        $stmt->bindParam(':order_address', $order_address);
+        $stmt->bindParam(':order_note', $order_note);
         $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
         
         return $stmt->execute();

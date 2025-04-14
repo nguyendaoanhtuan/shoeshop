@@ -11,27 +11,29 @@
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">×</button>
-                <?= $_SESSION['success']; unset($_SESSION['success']); ?>
+                <?= $_SESSION['success'];
+                unset($_SESSION['success']); ?>
             </div>
         <?php endif; ?>
 
         <?php if (isset($_SESSION['error'])): ?>
             <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">×</button>
-                <?= $_SESSION['error']; unset($_SESSION['error']); ?>
+                <?= $_SESSION['error'];
+                unset($_SESSION['error']); ?>
             </div>
         <?php endif; ?>
 
         <div class="row">
             <div class="col-md-12">
                 <div
-                style="border-radius: 15px;
+                    style="border-radius: 15px;
                 padding: 15px;"
-                 class="content-panel">
-                 <h4 style="color: black;
+                    class="content-panel">
+                    <h4 style="color: black;
                  font-weight: bold">Trạng thái đơn hàng</h4>
                     <form method="POST" action="">
-                    
+
                         <div class="form-group">
                             <label>Trạng thái giao hàng</label>
                             <select name="status" class="form-control">
@@ -50,16 +52,22 @@
                                 <option value="failed" <?= $order->payment_status == 'failed' ? 'selected' : '' ?>>Thanh toán thất bại</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        <hr>
+                        <h4 style="color: black;
+                 font-weight: bold">Địa chỉ giao hàng</h4>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="orderAddress" value="<?= htmlspecialchars($order->shipping_address) ?>">
+                        </div>
+                        <hr>
+                        <h4>Ghi chú</h4>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="orderNote"
+                                value="<?= htmlspecialchars($order->customer_note ?? '') ?>"
+                                placeholder="Nhập ghi chú đơn hàng">
+                        </div>
+                        <button type="submit" class="btn btn-primary" onclick="return confirm('Bạn có chắc chắn muốn cập nhật đơn hàng này?')">Cập nhật</button>
                         <a href="<?= BASE_URL ?>admin/checkout" class="btn btn-default">Quay lại</a>
                     </form>
-                    <hr>
-                    <h4 style="color: black;
-                 font-weight: bold">Địa chỉ giao hàng</h4>
-                    <p><?= htmlspecialchars($order->shipping_address) ?></p>
-                    <hr>
-                    <h4>Ghi chú</h4>
-                    <p><?= htmlspecialchars($order->customer_note ?: 'Không có ghi chú') ?></p>
                 </div>
             </div>
         </div>
@@ -83,17 +91,17 @@
                                 </tr>
                             <?php else: ?>
                                 <?php foreach ($orderItems as $item): ?>
-                                <tr>
-                                    <td><?= htmlspecialchars($item->product_name) ?></td>
-                                    <td><?= htmlspecialchars($item->size_name) ?></td>
-                                    <td><?= $item->quantity ?></td>
-                                    <?php if ($item->discount_price > 0): ?>
-                                        <td><?= number_format($item->discount_price, 0, ',', '.') ?> ₫ <del><?= number_format($item->price, 0, ',', '.') ?> ₫</del></td>
-                                    <?php else: ?>
-                                        <td><?= number_format($item->price, 0, ',', '.') ?> ₫</td>
-                                    <?php endif; ?>
-                                    <td><?= number_format(($item->discount_price ?: $item->price) * $item->quantity, 0, ',', '.') ?> ₫</td>
-                                </tr>
+                                    <tr>
+                                        <td><?= htmlspecialchars($item->product_name) ?></td>
+                                        <td><?= htmlspecialchars($item->size_name) ?></td>
+                                        <td><?= $item->quantity ?></td>
+                                        <?php if ($item->discount_price > 0): ?>
+                                            <td><?= number_format($item->discount_price, 0, ',', '.') ?> ₫ <del><?= number_format($item->price, 0, ',', '.') ?> ₫</del></td>
+                                        <?php else: ?>
+                                            <td><?= number_format($item->price, 0, ',', '.') ?> ₫</td>
+                                        <?php endif; ?>
+                                        <td><?= number_format(($item->discount_price ?: $item->price) * $item->quantity, 0, ',', '.') ?> ₫</td>
+                                    </tr>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </tbody>

@@ -133,7 +133,7 @@
                     case 'pending':
                     case 'processing':
                         echo '<form method="POST" action="">
-                        <button onclick="return confirm("Bạn có chắc chắn muốn hủy đơn hàng này?")" type="submit" class="btn btn-danger">Hủy đơn hàng</button>
+                        <button onclick="return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này?\')" type="submit" class="btn btn-danger">Hủy đơn hàng</button>
                         </form>';
                         break;
                     default:
