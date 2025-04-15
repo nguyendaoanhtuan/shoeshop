@@ -16,12 +16,6 @@
 
 <section class="login_box_area section_gap">
     <div class="container">
-        <?php if (isset($_SESSION['success'])): ?>
-            <div class="alert alert-success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
-        <?php endif; ?>
-        <?php if (isset($_SESSION['error'])): ?>
-            <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
-        <?php endif; ?>
 
         <div class="row justify-content-center">
             <div class="col-lg-6 profile-panel">

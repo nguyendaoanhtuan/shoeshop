@@ -261,16 +261,18 @@ class CheckoutController {
         if ($secureHash === $vnp_SecureHash) {
             $order = $this->orderModel->getOrderByNumber($inputData['vnp_TxnRef']);
             if ($order && $inputData['vnp_ResponseCode'] === '00') {
+                $cart = $this->cartModel->getCartByUserId($order->user_id);
                 $this->orderModel->updateOrderStatus($order->order_id, 'processing', 'paid');
-                $this->cartItemModel->clearCart($order->user_id);
+                $this->cartItemModel->clearCart($cart->cart_id);
                 $_SESSION['success'] = "Thanh toán thành công!";
+                header('Location: ' . BASE_URL . 'user/checkout/detail/' .$order->order_id);
             } else {
                 $_SESSION['error'] = "Thanh toán không thành công!";
+                header('Location: ' . BASE_URL . 'user/checkout');
             }
         } else {
             $_SESSION['error'] = "Sai chữ ký!";
         }
-        header('Location: ' . BASE_URL . 'user/checkout/detail');
         exit;
     }
 
@@ -284,15 +286,15 @@ class CheckoutController {
             header("Location: " . BASE_URL . "user/account/index");
             exit();
         }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if ($this->orderModel->cancelOrder($orderId)) {
-                $_SESSION['success'] = "Hủy đơn hàng thành công.";
-            } else {
-                $_SESSION['error'] = "Hủy đơn hàng thất bại.";
-            }
-            header("Location: " . BASE_URL . "user/account/index");
-            exit;
-        }
         require_once 'app/views/user/checkout/detail.php';
+    }
+    public function cancel($orderId){
+        if ($this->orderModel->cancelOrder($orderId)) {
+            $_SESSION['success'] = "Hủy đơn hàng thành công.";
+        } else {
+            $_SESSION['error'] = "Hủy đơn hàng thất bại.";
+        }
+        header("Location: " . BASE_URL . "user/account/index");
+        exit;
     }
 }

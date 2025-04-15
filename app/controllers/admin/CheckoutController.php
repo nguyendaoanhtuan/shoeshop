@@ -49,7 +49,7 @@ class CheckoutController {
             $payment_status = $_POST['payment_status'] ?? 'pending';
             $orderAddress = $_POST['orderAddress'];
             $orderNote = $_POST['orderNote'] ?? "";
-            if ($this->orderModel->updateOrderStatus($order_id, $status, $payment_status, $orderAddress, $orderNote)) {
+            if ($this->orderModel->updateOrder($order_id, $status, $payment_status, $orderAddress, $orderNote)) {
                 $_SESSION['success'] = "Cập nhật đơn hàng thành công.";
             } else {
                 $_SESSION['error'] = "Cập nhật đơn hàng thất bại.";

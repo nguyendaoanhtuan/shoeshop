@@ -15,6 +15,12 @@
 </section>
 <!-- End Banner Area -->
 <div class="container order-detail">
+<?php if (isset($_SESSION['success'])): ?>
+            <div class="alert alert-success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+        <?php endif; ?>
 <a href="<?= BASE_URL ?>shoeshop/user/account/index" class="btn btn-primary mb-2">Quay lại</a>
     <div class="row">
         <div class="col-md-8">
@@ -132,9 +138,10 @@
                 switch($order->status){
                     case 'pending':
                     case 'processing':
-                        echo '<form method="POST" action="">
-                        <button onclick="return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này?\')" type="submit" class="btn btn-danger">Hủy đơn hàng</button>
-                        </form>';
+                        echo '<a href="' . htmlspecialchars(BASE_URL . 'user/checkout/cancel/' . $order->order_id) . '" 
+                                           class="btn btn-danger btn-xs" 
+                                           onclick="return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này?\')">Hủy đơn hàng
+                                        </a>';
                         break;
                     default:
                         break;
